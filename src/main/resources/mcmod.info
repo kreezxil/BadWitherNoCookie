@@ -1,0 +1,16 @@
+[
+{
+  "modid": "badwithernocookie",
+  "name": "Bad Wither No Cookie!",
+  "description": "A simple mod to silence the Wither and Dragon broadcast sounds",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["droidicus"],
+  "credits": "Life, the universe, and everything!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
