@@ -1,4 +1,4 @@
-#[Bad Wither No Cookie!](http://minecraft.curseforge.com/projects/badwithernocookie)
+#[Bad Wither No Cookie!](http://minecraft.curseforge.com/projects/bad-wither-no-cookie)
 
 ##A Minecraft mod to silence the Wither and End Dragon broadcast sounds
 
