@@ -1,5 +1,6 @@
 package droidicus.badwithernocookie;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -14,10 +15,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = BadWitherNoCookie.MODID, version = BadWitherNoCookie.VERSION)
+@Mod(modid = BadWitherNoCookie.MODID)
 public class BadWitherNoCookie  {
     public static final String MODID = "badwithernocookie";
-    public static final String VERSION = "0.0.1";
 
     // Config instance
     public static Configuration config;
@@ -42,6 +42,8 @@ public class BadWitherNoCookie  {
                 modifiersField.setAccessible(true);
                 modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
                 field.set(null, null);
+
+                System.out.println("Silenced Wither sound :-D");
             } catch (NoSuchFieldException e) {
                 System.out.println("NoSuchFieldException, Wither sound not silenced :-(");
                 e.printStackTrace();
@@ -61,6 +63,8 @@ public class BadWitherNoCookie  {
                 modifiersField.setAccessible(true);
                 modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
                 field.set(null, null);
+
+                System.out.println("Silenced Dragon sound :-D");
             } catch (NoSuchFieldException e) {
                 System.out.println("NoSuchFieldException, Dragon sound not silenced :-(");
                 e.printStackTrace();
@@ -77,4 +81,5 @@ public class BadWitherNoCookie  {
             config.save();
         }
     }
+
 }
