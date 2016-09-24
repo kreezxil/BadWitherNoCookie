@@ -12,6 +12,7 @@ import java.lang.reflect.Modifier;
 import net.minecraft.init.SoundEvents;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -35,7 +36,7 @@ public class BadWitherNoCookie  {
         // Disable the Wither spawn broadcast sound if it is configed to do so
         if (Config.silenceWither) {
             try {
-                Field field = SoundEvents.class.getField("ENTITY_WITHER_SPAWN");
+                Field field = ReflectionHelper.findField(SoundEvents.class, "ENTITY_WITHER_SPAWN", "field_187855_gD");
                 field.setAccessible(true);
 
                 Field modifiersField = Field.class.getDeclaredField("modifiers");
@@ -56,7 +57,7 @@ public class BadWitherNoCookie  {
         // Disable the Ender Dragon death broadcast sound if it is configed to do so
         if (Config.silenceDragon) {
             try {
-                Field field = SoundEvents.class.getField("ENTITY_ENDERDRAGON_DEATH");
+                Field field = ReflectionHelper.findField(SoundEvents.class, "ENTITY_ENDERDRAGON_DEATH", "field_187522_aL");
                 field.setAccessible(true);
 
                 Field modifiersField = Field.class.getDeclaredField("modifiers");
