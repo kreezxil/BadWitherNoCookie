@@ -1,23 +1,22 @@
 package droidicus.badwithernocookie;
 
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.init.SoundEvents;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-import java.io.File;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import net.minecraft.init.SoundEvents;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 @Mod(modid = BadWitherNoCookie.MODID)
-public class BadWitherNoCookie  {
+public class BadWitherNoCookie {
     public static final String MODID = "badwithernocookie";
 
     // Config instance
