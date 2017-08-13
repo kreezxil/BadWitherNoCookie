@@ -1,16 +1,18 @@
-#[Bad Wither No Cookie!](http://minecraft.curseforge.com/projects/bad-wither-no-cookie)
+# [Bad Wither No Cookie!](http://minecraft.curseforge.com/projects/bad-wither-no-cookie)
 
-##A Minecraft mod to silence the Wither and End Dragon broadcast sounds
+## A Minecraft mod to silence the Wither and End Dragon broadcast sounds
 
-###Implemented Features:
+### Implemented Features:
+Silenced Wither, End Dragon, Thunder, Log Message when sound gets silenced.
 
-###Future Work:
+### Future Work:
+None
 
-###Tested with:
+### Tested with:
 - Minecraft 1.10.2
 - Forge v12.18.1.2094
 
-#Licenses
+# Licenses
 Code, Textures and binaries are licensed under the MIT License.
 
 You are allowed to use the mod in your modpack.
