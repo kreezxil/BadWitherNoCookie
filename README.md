@@ -11,8 +11,7 @@ Silenced Wither, End Dragon, Thunder, Log Message when sound gets silenced.
 None
 
 ### Tested with:
-- Minecraft 1.10.2
-- Forge v12.18.1.2094
+- Minecraft 1.11.2 thru 1.12.1
 
 # Licenses
 Code, Textures and binaries are licensed under the MIT License.
