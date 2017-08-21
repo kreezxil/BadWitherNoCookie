@@ -1,0 +1,16 @@
+[
+{
+  "modid": "badwithernocookiereloaded",
+  "name": "Bad Wither No Cookie! Reloaded",
+  "description": "A simple mod to silence the Wither, Dragon, and Thunder broadcast sounds.",
+  "version": "1.10.2-1.10",
+  "mcversion": "1.10.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["droidicus","kreezxil"],
+  "credits": "Life, the universe, and everything!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
