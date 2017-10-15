@@ -40,5 +40,8 @@ public class SoundEventHandler {
             }
             event.setResultSound(null);
         }
+        
+//        System.out.println("Sound is "+event.getName());
+//        event.getListenerList();
     }
 }

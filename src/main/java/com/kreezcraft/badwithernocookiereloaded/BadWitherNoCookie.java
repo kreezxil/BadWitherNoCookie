@@ -12,6 +12,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.File;
 
+import org.apache.logging.log4j.Logger;
+
 @Mod(modid = BadWitherNoCookie.MODID, name = BadWitherNoCookie.NAME, version = BadWitherNoCookie.VERSION)
 public class BadWitherNoCookie {
     public static final String MODID = "badwithernocookiereloaded";
@@ -20,9 +22,12 @@ public class BadWitherNoCookie {
     
     // Config instance
     public static Configuration config;
+    
+    public static Logger logger;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
+    	logger = e.getModLog();
         // read from config file
         File directory = e.getModConfigurationDirectory();
         config = new Configuration(new File(directory.getPath(), "badwithernocookie.cfg"));
