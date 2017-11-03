@@ -1,5 +1,6 @@
 package com.kreezcraft.badwithernocookiereloaded;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -7,6 +8,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -18,12 +20,15 @@ import org.apache.logging.log4j.Logger;
 public class BadWitherNoCookie {
     public static final String MODID = "badwithernocookiereloaded";
     public static final String NAME = "Bad Wither No Cookie! Reloaded";
-    public static final String VERSION = "1.12.2-1.11";
+    public static final String VERSION = "1.12.2-2.12";
     
     // Config instance
     public static Configuration config;
     
     public static Logger logger;
+    
+    public static boolean whatWasThat = false;
+    public static EntityPlayer player;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
@@ -49,4 +54,8 @@ public class BadWitherNoCookie {
         }
     }
 
+    @Mod.EventHandler
+    public void serverLoad(FMLServerStartingEvent event) {
+    	event.registerServerCommand(new ListenCommand());
+    }
 }

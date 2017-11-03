@@ -1,5 +1,7 @@
 package com.kreezcraft.badwithernocookiereloaded;
 
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -41,7 +43,25 @@ public class SoundEventHandler {
             event.setResultSound(null);
         }
         
-//        System.out.println("Sound is "+event.getName());
-//        event.getListenerList();
+        if (Config.silenceUs != null) {
+        	for (String s: Config.silenceUs) {
+        		if((event.getName().equals(s))) {
+        			if(!theSilence) {
+        				System.out.println(s + " Silenced!!!");
+        			}
+        			event.setResultSound(null);
+        		}
+        	}
+        	
+        }
+        
+        if (BadWitherNoCookie.whatWasThat) {
+        	if(BadWitherNoCookie.player == null) {
+        		System.out.println("Sound is "+event.getName());
+        	} else {
+        	    BadWitherNoCookie.player.sendMessage(new TextComponentString(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()));
+        	}
+        	event.getListenerList();
+        }
     }
 }
