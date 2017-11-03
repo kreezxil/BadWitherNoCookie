@@ -7,20 +7,15 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.command.CommandBase;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import scala.actors.threadpool.Arrays;
 
-public class ListenCommand implements ICommand {
+public class ListenCommand extends CommandBase {
 
-	@Override
-	public int compareTo(ICommand arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public String getName() {
@@ -29,7 +24,7 @@ public class ListenCommand implements ICommand {
 
 	@Override
 	public String getUsage(ICommandSender sender) {
-		return "toggles display of the sound event names in the current text stream";
+		return "/listen\n - toggles display of the sound event names in the current text stream";
 	}
 
 	@Override
@@ -62,5 +57,6 @@ public class ListenCommand implements ICommand {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

@@ -1,5 +1,6 @@
 package com.kreezcraft.badwithernocookiereloaded;
 
+import net.minecraft.command.ICommand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -56,6 +57,6 @@ public class BadWitherNoCookie {
 
     @Mod.EventHandler
     public void serverLoad(FMLServerStartingEvent event) {
-    	event.registerServerCommand(new ListenCommand());
+    	event.registerServerCommand((ICommand) new ListenCommand());
     }
 }
