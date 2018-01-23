@@ -17,11 +17,16 @@ import java.io.File;
 
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = BadWitherNoCookie.MODID, name = BadWitherNoCookie.NAME, version = BadWitherNoCookie.VERSION)
+@Mod(
+		modid = BadWitherNoCookie.MODID, 
+		name = BadWitherNoCookie.NAME, 
+		version = BadWitherNoCookie.VERSION,
+		acceptableRemoteVersions = "*"
+	)
 public class BadWitherNoCookie {
     public static final String MODID = "badwithernocookiereloaded";
     public static final String NAME = "Bad Wither No Cookie! Reloaded";
-    public static final String VERSION = "1.12.2-2.12";
+    public static final String VERSION = "@VERSION@";
     
     // Config instance
     public static Configuration config;
