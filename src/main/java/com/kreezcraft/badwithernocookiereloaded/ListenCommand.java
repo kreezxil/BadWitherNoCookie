@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.command.CommandBase;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import scala.actors.threadpool.Arrays;
 
 public class ListenCommand extends CommandBase {
@@ -38,6 +39,7 @@ public class ListenCommand extends CommandBase {
 			BadWitherNoCookie.player = (EntityPlayer) sender;
 		}
 		BadWitherNoCookie.whatWasThat = !BadWitherNoCookie.whatWasThat;
+		sender.sendMessage(new TextComponentString("Event Listening is now " + (BadWitherNoCookie.whatWasThat ? "on":"off")));
 	}
 
 	@Override

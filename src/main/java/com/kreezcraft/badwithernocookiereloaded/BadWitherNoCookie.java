@@ -28,9 +28,6 @@ public class BadWitherNoCookie {
     public static final String NAME = "Bad Wither No Cookie! Reloaded";
     public static final String VERSION = "@VERSION@";
     
-    // Config instance
-    public static Configuration config;
-    
     public static Logger logger;
     
     public static boolean whatWasThat = false;
@@ -39,10 +36,6 @@ public class BadWitherNoCookie {
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
     	logger = e.getModLog();
-        // read from config file
-        File directory = e.getModConfigurationDirectory();
-        config = new Configuration(new File(directory.getPath(), "badwithernocookie.cfg"));
-        Config.readConfig();
     }
 
     @EventHandler
@@ -54,10 +47,6 @@ public class BadWitherNoCookie {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent e) {
-        // save config if it has changed
-        if (config.hasChanged()) {
-            config.save();
-        }
     }
 
     @Mod.EventHandler
