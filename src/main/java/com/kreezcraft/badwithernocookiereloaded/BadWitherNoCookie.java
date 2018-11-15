@@ -21,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 		modid = BadWitherNoCookie.MODID, 
 		name = BadWitherNoCookie.NAME, 
 		version = BadWitherNoCookie.VERSION,
+		acceptedMinecraftVersions = "[1.12.2)",
 		acceptableRemoteVersions = "*"
 	)
 public class BadWitherNoCookie {
