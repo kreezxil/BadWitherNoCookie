@@ -1,57 +1,55 @@
 package com.kreezcraft.badwithernocookiereloaded;
 
-import net.minecraft.command.ICommand;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import java.util.Optional;
 
-import java.io.File;
+import javax.annotation.Nonnull;
 
 import org.apache.logging.log4j.Logger;
 
-@Mod(
-		modid = BadWitherNoCookie.MODID, 
-		name = BadWitherNoCookie.NAME, 
-		version = BadWitherNoCookie.VERSION,
-		acceptedMinecraftVersions = "1.12.2",
-		acceptableRemoteVersions = "*"
-	)
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod("bwncr")
 public class BadWitherNoCookie {
-    public static final String MODID = "badwithernocookiereloaded";
-    public static final String NAME = "Bad Wither No Cookie! Reloaded";
-    public static final String VERSION = "@VERSION@";
-    
-    public static Logger logger;
-    
-    public static boolean whatWasThat = false;
-    public static EntityPlayer player;
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent e) {
-    	logger = e.getModLog();
-    }
+	private static final String MOD_ID = "bwncr";
 
-    @EventHandler
-    @SideOnly(Side.CLIENT)
-    public void init(FMLInitializationEvent event) {
-        // Register event handler to do the real work
-        MinecraftForge.EVENT_BUS.register(new SoundEventHandler());
-    }
+	public static Logger logger;
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
-    }
+	public static BadWitherNoCookie instance;
 
-    @Mod.EventHandler
-    public void serverLoad(FMLServerStartingEvent event) {
-    	event.registerServerCommand((ICommand) new ListenCommand());
-    }
+	public static boolean whatWasThat = false;
+	public static EntityPlayer player;
+
+	public BadWitherNoCookie() {
+
+		DistExecutor.runForDist(() -> () -> new SideProxy.Client(), () -> () -> new SideProxy.Server());
+
+		MinecraftForge.EVENT_BUS.register(this);
+		instance = this;
+	}
+
+	@Nonnull
+	public static String getVersion() {
+		Optional<? extends ModContainer> o = ModList.get().getModContainerById(MOD_ID);
+		if (o.isPresent()) {
+			return o.get().getModInfo().getVersion().toString();
+		}
+		return "NONE";
+	}
+
+	public static boolean isDevBuild() {
+		String version = getVersion();
+		return "NONE".equals(version);
+	}
+
+	@Nonnull
+	public static ResourceLocation getId(String path) {
+		return new ResourceLocation(MOD_ID, path);
+	}
 }

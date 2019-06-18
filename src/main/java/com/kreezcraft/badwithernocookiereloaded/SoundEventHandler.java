@@ -5,8 +5,8 @@ import java.util.Arrays;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
  * Originally created by droidicus.
@@ -17,11 +17,11 @@ public class SoundEventHandler {
     @SubscribeEvent(priority= EventPriority.LOWEST, receiveCanceled=false)
     public void onEvent(PlaySoundEvent event) {
     	
-    	final boolean theSilence = BWNCR_Config.general.silenceSuccess;
+    	final boolean theSilence = BWNCR_Config.GENERAL.silenceSuccess.get(); 
     	
         // Disable the Wither spawn broadcast sound if it is configed to do so
         if ((event.getName().equals("entity.wither.spawn")) &&
-        		BWNCR_Config.general.silenceWither) {
+        		BWNCR_Config.GENERAL.silenceWither.get()) {
             if(!theSilence) {
             	System.out.println("WITHER SOUND SILENCED!!!");
             }
@@ -30,7 +30,7 @@ public class SoundEventHandler {
 
         // Disable the Ender Dragon death broadcast sound if it is configed to do so
         if ((event.getName().equals("entity.enderdragon.death")) &&
-        		BWNCR_Config.general.silenceDragon) {
+        		BWNCR_Config.GENERAL.silenceDragon.get()) {
         	if(!theSilence) {
         		System.out.println("ENDER DRAGON SOUND SILENCED!!!");
         	}
@@ -39,15 +39,15 @@ public class SoundEventHandler {
         
         // Disable the Thunderous Lightning broadcast sound if it is configed to do so
         if ((event.getName().equals("entity.lightning.thunder")) &&
-        		BWNCR_Config.general.silenceLightning) {
+        		BWNCR_Config.GENERAL.silenceLightning.get()) {
             if(!theSilence) {
             	System.out.println("THUNDER SILENCED!!!");
             }
             event.setResultSound(null);
         }
         
-        if (!Arrays.asList(BWNCR_Config.xtra.silenceUs).isEmpty()) {
-        	for (String soundName: BWNCR_Config.xtra.silenceUs) {
+        if (!Arrays.asList(BWNCR_Config.GENERAL.silenceUs).isEmpty()) {
+        	for (String soundName: BWNCR_Config.GENERAL.silenceUs.get()) {
         		if((event.getName().equals(soundName))) {
         			if(!theSilence) {
         				System.out.println(soundName + " Silenced!!!");
