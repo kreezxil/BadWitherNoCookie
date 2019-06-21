@@ -1,55 +1,51 @@
 package com.kreezcraft.badwithernocookiereloaded;
 
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("bwncr")
 public class BadWitherNoCookie {
 
 	private static final String MOD_ID = "bwncr";
 
-	public static Logger logger;
+	public static final Logger LOGGER = LogManager.getLogger();
 
 	public static BadWitherNoCookie instance;
 
-	public static boolean whatWasThat = false;
+	public static  boolean whatWasThat = false;
 	public static EntityPlayer player;
+	
+	public static SideProxy proxy = DistExecutor.runForDist(() -> SideProxy.Client::new, () -> SideProxy.Server::new);
 
 	public BadWitherNoCookie() {
 
-		DistExecutor.runForDist(() -> () -> new SideProxy.Client(), () -> () -> new SideProxy.Server());
-
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BWNCR_Config.spec);
+		
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(BadWitherNoCookie::clientSetup);
+		
 		MinecraftForge.EVENT_BUS.register(this);
 		instance = this;
 	}
 
-	@Nonnull
-	public static String getVersion() {
-		Optional<? extends ModContainer> o = ModList.get().getModContainerById(MOD_ID);
-		if (o.isPresent()) {
-			return o.get().getModInfo().getVersion().toString();
-		}
-		return "NONE";
+	private static void clientSetup(FMLClientSetupEvent event) {
+    	proxy.clientSetup(event);
+    }
+	
+	@SubscribeEvent
+	public void serverStarting(FMLServerStartingEvent event) {
+		//proxy.serverStarting(event);
+		ListenCommand.register(event.getCommandDispatcher());
 	}
 
-	public static boolean isDevBuild() {
-		String version = getVersion();
-		return "NONE".equals(version);
-	}
-
-	@Nonnull
-	public static ResourceLocation getId(String path) {
-		return new ResourceLocation(MOD_ID, path);
-	}
 }

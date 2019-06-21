@@ -1,5 +1,8 @@
 package com.kreezcraft.badwithernocookiereloaded;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class BWNCR_Config {
@@ -13,7 +16,8 @@ public class BWNCR_Config {
 		public final ForgeConfigSpec.ConfigValue<Boolean> silenceDragon;
 		public final ForgeConfigSpec.ConfigValue<Boolean> silenceLightning;
 		public final ForgeConfigSpec.ConfigValue<Boolean> silenceSuccess;
-		public final ForgeConfigSpec.ConfigValue<String[]> silenceUs;
+		private static List<String> DefaultValue = new ArrayList<String>();
+		public final ForgeConfigSpec.ConfigValue<List<? extends String>> silenceUs;
 		
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
@@ -37,7 +41,7 @@ public class BWNCR_Config {
 					.comment("A list of sounds to silence, discoverable with the toggle command /listen ",
 							"enter one sound event per line with no commas.")
 					.translation("config.silenceUs")
-					.define("", new String[0]);
+					.define("silenceUs", DefaultValue);
 			builder.pop();
 		}
 	}
