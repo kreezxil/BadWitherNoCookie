@@ -3,7 +3,7 @@ package com.kreezcraft.badwithernocookiereloaded;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -24,7 +24,7 @@ public class BadWitherNoCookie {
 	public static BadWitherNoCookie instance;
 
 	public static  boolean whatWasThat = false;
-	public static EntityPlayer player;
+	public static PlayerEntity player;
 	
 	public static SideProxy proxy = DistExecutor.runForDist(() -> SideProxy.Client::new, () -> SideProxy.Server::new);
 

@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 
 public final class ListenCommand {
 
@@ -17,7 +17,7 @@ public final class ListenCommand {
 					
 					BadWitherNoCookie.whatWasThat = !BadWitherNoCookie.whatWasThat;
 					BadWitherNoCookie.player = command.getSource().asPlayer();
-					command.getSource().sendFeedback(new TextComponentString("Event Listening is now " + (BadWitherNoCookie.whatWasThat ? "on":"off")),true);
+					command.getSource().sendFeedback(new StringTextComponent("Event Listening is now " + (BadWitherNoCookie.whatWasThat ? "on":"off")),true);
 					return 0;
 				}));
 	}
