@@ -2,21 +2,31 @@ package com.kreezcraft.badwithernocookiereloaded;
 
 import java.util.Arrays;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 /**
  * Originally created by droidicus.
  * Now heavily modifed by Kreezxil
  */
 public class SoundEventHandler {
+	EntityPlayer player = null;
     // LOWEST Priority so that everything else can do their thing if they need to first
+	@SubscribeEvent
+	public void player(PlayerEvent.PlayerLoggedInEvent event){
+		if(event.getPlayer().hasPermissionLevel(2) || Minecraft.getInstance().isSingleplayer()){
+    		player = event.getPlayer();
+    	}
+	}
+	
     @SubscribeEvent(priority= EventPriority.LOWEST, receiveCanceled=false)
     public void onEvent(PlaySoundEvent event) {
-    	
     	final boolean theSilence = BWNCR_Config.GENERAL.silenceSuccess.get(); 
     	
         // Disable the Wither spawn broadcast sound if it is configed to do so
@@ -25,7 +35,7 @@ public class SoundEventHandler {
             if(!theSilence) {
             	System.out.println("WITHER SOUND SILENCED!!!");
             }
-            event.setResultSound(null);
+            event.setCanceled(true);
         }
 
         // Disable the Ender Dragon death broadcast sound if it is configed to do so
@@ -34,7 +44,7 @@ public class SoundEventHandler {
         	if(!theSilence) {
         		System.out.println("ENDER DRAGON SOUND SILENCED!!!");
         	}
-            event.setResultSound(null);
+        	event.setCanceled(true);
         }
         
         // Disable the Thunderous Lightning broadcast sound if it is configed to do so
@@ -43,7 +53,7 @@ public class SoundEventHandler {
             if(!theSilence) {
             	System.out.println("THUNDER SILENCED!!!");
             }
-            event.setResultSound(null);
+            event.setCanceled(true);
         }
         
         if (!Arrays.asList(BWNCR_Config.GENERAL.silenceUs).isEmpty()) {
@@ -52,17 +62,17 @@ public class SoundEventHandler {
         			if(!theSilence) {
         				System.out.println(soundName + " Silenced!!!");
         			}
-        			event.setResultSound(null);
+        			event.setCanceled(true);
         		}
         	}
         	
         }
         
         if (BadWitherNoCookie.whatWasThat) {
-        	if(BadWitherNoCookie.player == null) {
-        		System.out.println("Sound is "+event.getName());
+        	if(player != null) {
+        	    player.sendMessage(new TextComponentString(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()));
         	} else {
-        	    BadWitherNoCookie.player.sendMessage(new TextComponentString(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()));
+        		BadWitherNoCookie.LOGGER.info(new TextComponentString(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()));
         	}
         	event.getListenerList();
         }

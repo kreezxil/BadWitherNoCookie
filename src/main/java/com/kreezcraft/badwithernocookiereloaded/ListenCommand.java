@@ -12,12 +12,13 @@ public final class ListenCommand {
 	
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("listen")
-				.requires(source -> source.hasPermissionLevel(0)));
+				.requires(source -> source.hasPermissionLevel(2) || source.getServer().isSinglePlayer())
+				.executes((command) -> {
+					
+					BadWitherNoCookie.whatWasThat = !BadWitherNoCookie.whatWasThat;
+					BadWitherNoCookie.player = command.getSource().asPlayer();
+					command.getSource().sendFeedback(new TextComponentString("Event Listening is now " + (BadWitherNoCookie.whatWasThat ? "on":"off")),true);
+					return 0;
+				}));
 	}
-	
-	public static void listen(CommandSource source) {
-		BadWitherNoCookie.whatWasThat = !BadWitherNoCookie.whatWasThat;
-		source.sendFeedback(new TextComponentString("Event Listening is now " + (BadWitherNoCookie.whatWasThat ? "on":"off")),true);
-	}
-
 }

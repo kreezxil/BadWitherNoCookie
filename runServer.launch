@@ -4,9 +4,9 @@
   <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="net.minecraftforge.userdev.LaunchTesting"/>
   <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dforge.logging.console.level=debug -Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP"/>
   <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value=""/>
-  <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:\Users\roger\Desktop\Modding\BadWitherNoCookie\run"/>
+  <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="/Users/nathanmartin/Dropbox/Kreezxil Mods/BadWitherNoCookie/BadWitherNoCookie/run"/>
   <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-    <mapEntry key="MOD_CLASSES" value="examplemod%%C:\Users\roger\Desktop\Modding\BadWitherNoCookie\bin\main;examplemod%%C:\Users\roger\Desktop\Modding\BadWitherNoCookie\bin\main"/>
+    <mapEntry key="MOD_CLASSES" value="examplemod%%/Users/nathanmartin/Dropbox/Kreezxil Mods/BadWitherNoCookie/BadWitherNoCookie/bin/main:examplemod%%/Users/nathanmartin/Dropbox/Kreezxil Mods/BadWitherNoCookie/BadWitherNoCookie/bin/main"/>
     <mapEntry key="MCP_MAPPINGS" value="snapshot_20180921-1.13"/>
     <mapEntry key="MCP_VERSION" value="20190213.203750"/>
     <mapEntry key="FORGE_VERSION" value="25.0.219"/>

@@ -22,7 +22,7 @@ displayURL="https://minecraft.curseforge.com/projects/bad-wither-no-cookie-reloa
 # A text field displayed in the mod UI
 credits="Thanks to Lex and Team for keeping modding alive." #optional
 # A text field displayed in the mod UI
-authors="Kreezxil" #optional
+authors="Kreezxil, Eleksploded" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 Silence server level sounds making them local in the process. 
