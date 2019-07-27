@@ -17,8 +17,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod("bwncr")
 public class BadWitherNoCookie {
 
-	private static final String MOD_ID = "bwncr";
-
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public static BadWitherNoCookie instance;
