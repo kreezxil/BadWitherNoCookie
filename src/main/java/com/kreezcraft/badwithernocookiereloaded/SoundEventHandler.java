@@ -3,27 +3,19 @@ package com.kreezcraft.badwithernocookiereloaded;
 import java.util.Arrays;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 /**
  * Originally created by droidicus.
  * Now heavily modifed by Kreezxil
  */
 public class SoundEventHandler {
-	PlayerEntity player = null;
-    // LOWEST Priority so that everything else can do their thing if they need to first
-	@SubscribeEvent
-	public void player(PlayerEvent.PlayerLoggedInEvent event){
-		if(event.getPlayer().hasPermissionLevel(2) || Minecraft.getInstance().isSingleplayer()){
-    		player = event.getPlayer();
-    	}
-	}
+	ClientPlayerEntity player = null;
 	
     @SubscribeEvent(priority= EventPriority.LOWEST, receiveCanceled=false)
     public void onEvent(PlaySoundEvent event) {
@@ -69,6 +61,7 @@ public class SoundEventHandler {
         }
         
         if (BadWitherNoCookie.whatWasThat) {
+        	player = Minecraft.getInstance().player;
         	if(player != null) {
         	    player.sendMessage(new StringTextComponent(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()));
         	} else {
