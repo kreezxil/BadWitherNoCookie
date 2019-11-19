@@ -27,7 +27,7 @@ public class SoundEventHandler {
             if(!theSilence) {
             	System.out.println("WITHER SOUND SILENCED!!!");
             }
-            event.setCanceled(true);
+            event.setResultSound(null);
         }
 
         // Disable the Ender Dragon death broadcast sound if it is configed to do so
@@ -36,7 +36,7 @@ public class SoundEventHandler {
         	if(!theSilence) {
         		System.out.println("ENDER DRAGON SOUND SILENCED!!!");
         	}
-        	event.setCanceled(true);
+        	event.setResultSound(null);
         }
         
         // Disable the Thunderous Lightning broadcast sound if it is configed to do so
@@ -45,7 +45,7 @@ public class SoundEventHandler {
             if(!theSilence) {
             	System.out.println("THUNDER SILENCED!!!");
             }
-            event.setCanceled(true);
+            event.setResultSound(null);
         }
         
         if (!Arrays.asList(BWNCR_Config.GENERAL.silenceUs).isEmpty()) {
@@ -54,7 +54,7 @@ public class SoundEventHandler {
         			if(!theSilence) {
         				System.out.println(soundName + " Silenced!!!");
         			}
-        			event.setCanceled(true);
+        			event.setResultSound(null);
         		}
         	}
         	
