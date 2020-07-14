@@ -63,7 +63,7 @@ public class SoundEventHandler {
         if (BadWitherNoCookie.whatWasThat) {
         	player = Minecraft.getInstance().player;
         	if(player != null) {
-        	    player.sendMessage(new StringTextComponent(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()));
+        	    player.sendMessage(new StringTextComponent(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()), player.getUniqueID());
         	} else {
         		BadWitherNoCookie.LOGGER.info(new StringTextComponent(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()));
         	}

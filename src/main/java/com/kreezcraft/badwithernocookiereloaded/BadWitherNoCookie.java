@@ -24,10 +24,10 @@ public class BadWitherNoCookie {
 	public static  boolean whatWasThat = false;
 	public static PlayerEntity player;
 	
-	public static SideProxy proxy = DistExecutor.runForDist(() -> SideProxy.Client::new, () -> SideProxy.Server::new);
-
+	public static SideProxy proxy = DistExecutor.safeRunForDist(() -> SideProxy.Client::new, () -> SideProxy.Server::new);
+	
 	public BadWitherNoCookie() {
-
+		
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BWNCR_Config.spec);
 		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(BadWitherNoCookie::clientSetup);

@@ -20,3 +20,5 @@
 \.classpath
 
 .idea/
+
+*.launch
