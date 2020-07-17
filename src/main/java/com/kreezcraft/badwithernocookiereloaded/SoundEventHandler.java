@@ -6,20 +6,23 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 /**
  * Originally created by droidicus.
  * Now heavily modifed by Kreezxil
  */
-public class SoundEventHandler {
-	ClientPlayerEntity player = null;
-	
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid="bwncr", value=Dist.CLIENT)
+public class SoundEventHandler {	
     @SubscribeEvent(priority= EventPriority.LOWEST, receiveCanceled=false)
-    public void onEvent(PlaySoundEvent event) {
+    public static void onEvent(PlaySoundEvent event) {
     	final boolean theSilence = BWNCR_Config.GENERAL.silenceSuccess.get(); 
+    	
+    	//System.out.println("Hello");
     	
         // Disable the Wither spawn broadcast sound if it is configed to do so
         if ((event.getName().equals("entity.wither.spawn")) &&
@@ -57,11 +60,11 @@ public class SoundEventHandler {
         			event.setResultSound(null);
         		}
         	}
-        	
         }
         
         if (BadWitherNoCookie.whatWasThat) {
-        	player = Minecraft.getInstance().player;
+        	@SuppressWarnings("resource")
+			ClientPlayerEntity player = Minecraft.getInstance().player;
         	if(player != null) {
         	    player.sendMessage(new StringTextComponent(TextFormatting.AQUA + "Sound is "+TextFormatting.RED + event.getName()), player.getUniqueID());
         	} else {
